@@ -1,20 +1,25 @@
 package com.generation.lojaDeGames.model;
 
-import java.math.BigDecimal;
 
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_categoria")
 public class Categoria {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -22,58 +27,57 @@ public class Categoria {
 	@NotNull
 	@Size(min = 3, max = 100)
 	private String tipoJogo;
-	
+
 	@NotNull
 	@Size(min = 3, max = 50)
 	private String console;
 
-	@Size(min = 5, max = 500)
-	private String descricao;
-
-	@NotNull
-	@Positive
-	private BigDecimal preco;
-
+	@Size(min = 3, max = 50)
+	private String acessorio;
 	
-public long getId() {
-	return id;
-}
-
-public void setId(long id) {
-	this.id = id;
-}
-
-public String getTipoJogo() {
-	return tipoJogo;
-}
-
-public void setTipoJogo(String tipoJogo) {
-	this.tipoJogo = tipoJogo;
-}
-
-public String getConsole() {
-	return console;
-}
-
-public void setConsole(String console) {
-	this.console = console;
-}
-
-public String getAcessorios() {
-	return descricao;
-}
-
-public void setAcessorios(String acessorios) {
-	this.descricao = acessorios;
-}
-
-public BigDecimal getPreco() {
-	return preco;
-}
-
-public void setPreco(BigDecimal preco) {
-	this.preco = preco;
-}
-
 	
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("categoria")
+	private List<Produto>produto;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getTipoJogo() {
+		return tipoJogo;
+	}
+
+	public void setTipoJogo(String tipoJogo) {
+		this.tipoJogo = tipoJogo;
+	}
+
+	public String getConsole() {
+		return console;
+	}
+
+	public void setConsole(String console) {
+		this.console = console;
+	}
+
+		
+	public String getAcessorio() {
+		return acessorio;
+	}
+
+	public List<Produto> getProduto() {
+		return produto;
+	}
+
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
+	}
+
+	public void setAcessorio(String acessorio) {
+		this.acessorio = acessorio;
+	}
 }
