@@ -1,6 +1,4 @@
-package com.generation.lojaDeGames.model;
-
-
+package com.generation.farmacia.model;
 
 import java.util.List;
 
@@ -19,27 +17,30 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "tb_categoria")
 public class Categoria {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
+	
 	@NotNull
-	@Size(min = 3, max = 100)
-	private String tipoJogo;
-
+	
+	private String categoria;
+	
 	@NotNull
-	@Size(min = 3, max = 50)
-	private String console;
-
-	@Size(min = 3, max = 50)
-	private String acessorio;
+	private boolean higiene;
+	
+	@NotNull
+	private boolean cosmeticos;
+	
+	@NotNull
+	private boolean bula;
+	
 	
 	
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("categoria")
 	private List<Produto>produto;
-
+	
 	public long getId() {
 		return id;
 	}
@@ -48,26 +49,38 @@ public class Categoria {
 		this.id = id;
 	}
 
-	public String getTipoJogo() {
-		return tipoJogo;
+	public String getTipo() {
+		return categoria;
 	}
 
-	public void setTipoJogo(String tipoJogo) {
-		this.tipoJogo = tipoJogo;
+	public void setTipo(String categoria) {
+		this.categoria = categoria;
 	}
 
-	public String getConsole() {
-		return console;
+	public boolean isHigiene() {
+		return higiene;
 	}
 
-	public void setConsole(String console) {
-		this.console = console;
+	public void setHigiene(boolean higiene) {
+		this.higiene = higiene;
 	}
 
-		
-	public String getAcessorio() {
-		return acessorio;
+	public boolean isCosmeticos() {
+		return cosmeticos;
 	}
+
+	public void setCosmeticos(boolean cosmeticos) {
+		this.cosmeticos = cosmeticos;
+	}
+
+	public boolean isBula() {
+		return bula;
+	}
+
+	public void setBula(boolean bula) {
+		this.bula = bula;
+	}
+
 
 	public List<Produto> getProduto() {
 		return produto;
@@ -76,9 +89,8 @@ public class Categoria {
 	public void setProduto(List<Produto> produto) {
 		this.produto = produto;
 	}
+	
+	
 
-	public void setAcessorio(String acessorio) {
-		this.acessorio = acessorio;
-	}
 	
 }
