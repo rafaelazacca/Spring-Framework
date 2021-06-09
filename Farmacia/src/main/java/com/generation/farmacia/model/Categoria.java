@@ -1,5 +1,6 @@
 package com.generation.farmacia.model;
 
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -23,17 +24,14 @@ public class Categoria {
 	private long id;
 	
 	@NotNull
-	
 	private String categoria;
 	
 	@NotNull
-	private boolean higiene;
+	private String descricao;
+	
 	
 	@NotNull
-	private boolean cosmeticos;
-	
-	@NotNull
-	private boolean bula;
+	private boolean receita;
 	
 	
 	
@@ -49,36 +47,20 @@ public class Categoria {
 		this.id = id;
 	}
 
-	public String getTipo() {
+	public String getCategoria() {
 		return categoria;
 	}
 
-	public void setTipo(String categoria) {
+	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
 
-	public boolean isHigiene() {
-		return higiene;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setHigiene(boolean higiene) {
-		this.higiene = higiene;
-	}
-
-	public boolean isCosmeticos() {
-		return cosmeticos;
-	}
-
-	public void setCosmeticos(boolean cosmeticos) {
-		this.cosmeticos = cosmeticos;
-	}
-
-	public boolean isBula() {
-		return bula;
-	}
-
-	public void setBula(boolean bula) {
-		this.bula = bula;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 
@@ -90,7 +72,12 @@ public class Categoria {
 		this.produto = produto;
 	}
 	
-	
+	public boolean isReceita() {
+		return receita;
+	}
 
-	
+	public void setReceita(boolean receita) {
+		this.receita = receita;
+	}
+		
 }
